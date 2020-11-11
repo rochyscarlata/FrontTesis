@@ -1,0 +1,101 @@
+<div class="wrapper">
+    <app-sidebar style="background: white !important;"></app-sidebar>
+
+    <div class="main">
+        <nav class="navbar navbar-expand navbar-theme">
+            <a class="sidebar-toggle d-flex mr-2">
+                <i class="hamburger align-self-center"></i>
+            </a>
+        </nav>
+        <main class="content">
+            <div class="container-fluid">
+
+                <div class="header">
+                    <h1 class="header-title">
+                            Usuarios
+                    </h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a [routerLink]="['/dashboard']" >Dashboard</a></li>
+                            <li class="breadcrumb-item" [routerLink]="['/usuarios']"  ><a>Usuarios</a></li>
+
+                        </ol>
+                    </nav>
+                </div>
+                <div class="row">
+                    
+                    <div class="col-12 col-lg-12"  *ngIf="success_message">
+                        
+                        <div class="alert alert-info alert-dismissible" role="alert">
+                            <div class="alert-message" >
+                                {{success_message}}
+                            </div>
+    
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close" [routerLink]="['/usuarios']" (click)="success_alert()">
+                            <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-12 col-xl-12">
+                        <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title">Edicion de usuario</h5>
+                                </div>
+                                <div class="card-body">
+                                   <div class="row">
+                                       <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label>
+                                                <b>Nombres del usuario</b>
+                                            </label>
+                                            <input type="text" class="form-control" #nombres="ngModel" name="nombres" [(ngModel)]="user.nombres" placeholder="Nombre y apellido" required> 
+                                        </div>
+                                       </div>
+                                       <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label>
+                                                <b>Correo del usuario</b>
+                                            </label>
+                                            <input type="email" class="form-control" #email="ngModel" name="email" [(ngModel)]="user.email" placeholder="Correo del usuario" required>
+                                        </div>
+                                       </div>
+                                       <div class="form-group">
+                                        <label>
+                                            <b>Nueva contraseña del usuario</b>
+                                        </label>
+                                        <input type="password" class="form-control" #password="ngModel" name="password" [(ngModel)]="user.password" placeholder="Ingrese la nueva contraseña " >
+                                    </div>
+                                   </div>
+                                   <div class="col-lg-4">
+                                     <div class="form-group">
+                                         <label>
+                                              <b>Role del usuario</b> 
+                                          </label>
+                                         <select class="form-control" #role="ngModel" name="role" [(ngModel)]="user.role" required  >
+                                              <option value="" disabled>Seleccionar</option>
+                                               <option value="ADMIN">Administrador</option>
+                                               <option value="EMPLEADO">Vendedor</option>
+                                           </select>
+                                       </div>
+                                   </div>
+                                   
+    
+    
+                                </div>
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-success">Actualizar usuario</button>
+                                </div>
+                            </div> 
+                        </form>
+                    </div>
+                </div>
+
+
+
+               
+            </div>
+        </main>
+       
+    </div>
+</div>
