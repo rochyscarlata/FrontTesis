@@ -68,6 +68,8 @@
                                         <th class="text-center">Precio Venta</th>
                                         <th class="text-center">Cantidad</th>
                                         <th class="text-center">Subtotal</th>
+                                        <th class="text-center">Total</th>
+
                                     </tr>
                                 </thead>
                                 <tbody *ngFor="let item of detalle_venta">
@@ -76,6 +78,7 @@
                                     <td class="text-center">{{item.cantidad}}</td>
                                     <td class="text-center">${{(item.idproducto.precio_venta) * (item.cantidad)}}</td>
                                 </tbody>
+                                
                             </table>
                         </div>
                     </div>
