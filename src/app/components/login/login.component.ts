@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     if(this.identity){
-      this._router.navigate(['ventas']);
+      this._router.navigate(['dashboard']);
     }
   }
 
@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
           this._userService.login(this.user,true).subscribe(
             response=>{
               localStorage.setItem('identity',JSON.stringify(response.user));
-              this._router.navigate(['ventas']);
+              this._router.navigate(['dashboard']);
             },
             error=>{
 

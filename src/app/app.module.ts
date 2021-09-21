@@ -24,6 +24,9 @@ import { VentaIndexComponent } from './components/ventas/venta-index/venta-index
 import { VentaCreateComponent } from './components/ventas/venta-create/venta-create.component';
 import { VentaDetalleComponent } from './components/ventas/venta-detalle/venta-detalle.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Chart } from 'chart.js';
+import { ChartsModule } from 'ng2-charts';
+
 
 @NgModule({
   declarations: [
@@ -53,7 +56,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     routing,
     ReactiveFormsModule,
     NgxPaginationModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

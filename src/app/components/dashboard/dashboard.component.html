@@ -1,1 +1,40 @@
-<p>dashboard works!</p>
+<div class="wrapper">
+  <app-sidebar style="background: white !important"></app-sidebar>
+
+  <div class="main">
+    <nav class="navbar navbar-expand navbar-theme">
+      <a class="sidebar-toggle d-flex mr-2">
+        <i class="hamburger align-self-center"></i>
+      </a>
+    </nav>
+        <!-- este main es el que nos permite cerrar el toggle ACORDARSE Y CORREGIR EN LOS DEMAS -->
+    <main class="content">
+      <div class="container-fluid">
+        <div class="header">
+          <h1 class="header-title">Dashboard</h1>
+          <div>
+            <h3>Productos mas vendidos</h3>
+        </div>
+        </div>
+     
+        
+          <div class="row">
+            <div class="col-md-12">
+              <canvas
+                baseChart
+                [datasets]="barChartData"
+                [labels]="barChartLabels"
+                [options]="barChartOptions"
+                [plugins]="barChartPlugins"
+                [legend]="barChartLegend"
+                [chartType]="barChartType"
+              >
+              </canvas>
+            </div>
+            <button class="btn btn-primary" (click)="randomize()">Update</button>
+          </div>
+        <br>
+      </div>
+    </main>
+  </div>
+</div>

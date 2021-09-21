@@ -58,7 +58,6 @@ export class ProductoCreateComponent implements OnInit {
         precio_venta: productoForm.value.precio_venta,
         stock: productoForm.value.stock,
         idcategoria: productoForm.value.idcategoria,
-        puntos: productoForm.value.puntos,
         
       }).subscribe(
         response =>{
