@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ClienteService } from 'src/app/services/cliente.service';
+import { Router } from '@angular/router';
+
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-cliente-edit',
@@ -10,21 +13,23 @@ import { ClienteService } from 'src/app/services/cliente.service';
 export class ClienteEditComponent implements OnInit {
 
   public id;
-  public cliente : any = {}
+  public cliente: any = {}
   public success_message;
 
   constructor(
     private _route: ActivatedRoute,
-    private _clienteService : ClienteService,
+    private _clienteService: ClienteService,
+    private _router: Router,
+
   ) { }
 
   ngOnInit() {
     this._route.params.subscribe(
-      params=>{
+      params => {
         this.id = params['id'];
 
         this._clienteService.get_cliente(this.id).subscribe(
-          response=>{
+          response => {
             console.log(response);
             this.cliente = response.cliente;
           }
@@ -33,24 +38,35 @@ export class ClienteEditComponent implements OnInit {
     )
   }
 
-  close_alert(){
+  close_alert() {
     this.success_message = '';
   }
 
-  onSubmit(clienteForm){
-    if(clienteForm.valid){
+  onSubmit(clienteForm) {
+    if (clienteForm.valid) {
       this._clienteService.update_cliente({
         _id: this.id,
         nombres: clienteForm.value.nombres,
         correo: clienteForm.value.correo,
         dni: clienteForm.value.dni
 
-        }).subscribe(
-        response=>{
-          this.success_message= 'Se actualizo con exito'
+      }).subscribe(
+        response => {
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Cliente editado con exito',
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            this._router.navigate(['clientes']);
+
+
+          })
+
         }
+
       )
     }
   }
-
 }

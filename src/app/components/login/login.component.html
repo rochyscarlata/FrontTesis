@@ -35,7 +35,7 @@
                                             <label>Contraseña</label>
                                             <input class="form-control form-control-lg" type="password"  placeholder="contraseña"
                                             #password="ngModel" name="password" [(ngModel)]="user.password" required/>
-                                           
+                                           <span class="form-text text-danger" *ngIf="loginForm.controls.password?.invalid && loginForm.controls.password?.touched" >Contraseña requerida</span> 
                                         </div>
                                        
                                         <div class="text-center mt-3">

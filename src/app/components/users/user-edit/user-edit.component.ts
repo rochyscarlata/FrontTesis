@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/models/User';
 import { UserService } from 'src/app/services/user.service';
 
+import Swal from 'sweetalert2'
+
 @Component({
   selector: 'app-user-edit',
   templateUrl: './user-edit.component.html',
@@ -53,7 +55,18 @@ export class UserEditComponent implements OnInit {
       }
       ).subscribe(
         response=>{
-          this.success_message = 'Se actualizo los datos del usuario';
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Cliente editado con exito',
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            this._router.navigate(['usuarios']);
+
+
+          })
+
         }
       )
     }
