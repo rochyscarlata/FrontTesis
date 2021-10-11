@@ -7,6 +7,9 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { DetalleVenta } from "../../../models/DetalleVenta";
 import { Venta } from "../../../models/Venta";
 import { VentaService } from 'src/app/services/venta.service';
+import Swal from 'sweetalert2';
+import { Cliente }  from '../../../models/Cliente'
+
 
 @Component({
   selector: 'app-venta-create',
@@ -20,6 +23,7 @@ export class VentaCreateComponent implements OnInit {
   public venta : any = {
     idcliente : '',
   };
+  public cliente;
   public productos;
   public producto : any = {
     stock : '--|--',
@@ -40,6 +44,8 @@ export class VentaCreateComponent implements OnInit {
     private _ventaService : VentaService,
   ) { 
     this.identity = this._userService.getIdentity();
+    this.cliente = new Cliente('', '', '','', 1);
+
   }
 
   ngOnInit() {
@@ -98,6 +104,7 @@ export class VentaCreateComponent implements OnInit {
 
           this.total = this.total + (parseInt(this.producto.precio_venta) * parseInt(detalleForm.value.cantidad));
           console.log( this.total);
+          this.producto.precio_venta = ''
         }
         else{
           this.error_message = 'No existe el suficiente stock para la venta';
@@ -105,12 +112,27 @@ export class VentaCreateComponent implements OnInit {
     }else{
       console.log("error");
     }
+
   }
 
   eliminar(idx,precio_venta,cantidad){
     this.data_detalle.splice(idx,1);
     this.total=this.total - (parseInt(precio_venta)*parseInt(cantidad));
   }
+
+// nuevoCliente(clienteForm){
+//   if(clienteForm.valid){
+//   this._clienteService.insert_clientes({
+//     nombres:clienteForm.value.nombres,
+//     dni:clienteForm.value.dni,
+//     correo:clienteForm.value.correo,
+
+//   }).subscribe(
+   
+//     )
+//   }
+   
+//   }
 
   onSubmit(ventaForm){
     if(ventaForm.valid){

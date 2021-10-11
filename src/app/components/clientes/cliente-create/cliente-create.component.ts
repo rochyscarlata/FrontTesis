@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ClienteService } from 'src/app/services/cliente.service';
 import { Cliente }  from '../../../models/Cliente'
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2'
 
 
 @Component({
@@ -37,7 +38,17 @@ export class ClienteCreateComponent implements OnInit {
 
       }).subscribe(
         response=>{
-          this._router.navigate(['clientes']);
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Cliente creado con exito',
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            this._router.navigate(['clientes']);
+
+
+          })
           
         }, error=>{
 

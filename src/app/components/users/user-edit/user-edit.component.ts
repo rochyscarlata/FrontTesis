@@ -58,7 +58,7 @@ export class UserEditComponent implements OnInit {
           Swal.fire({
             position: 'center',
             icon: 'success',
-            title: 'Cliente editado con exito',
+            title: 'Uusario editado con exito',
             showConfirmButton: false,
             timer: 1500
           }).then((result) => {

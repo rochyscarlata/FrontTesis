@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+
 import { ProductoService } from 'src/app/services/producto.service';
 import { Producto } from "../../../models/Producto";
+import Swal from 'sweetalert2'
 
 interface HtmlInputEvent extends Event{
   target : HTMLInputElement & EventTarget;
@@ -25,6 +28,8 @@ export class ProductoCreateComponent implements OnInit {
 
   constructor(
     private _productoService : ProductoService,
+    private _router : Router,
+
   ) { 
     this.producto = new Producto('','','','',1,1,1,'',1)
   }
@@ -58,12 +63,24 @@ export class ProductoCreateComponent implements OnInit {
         precio_venta: productoForm.value.precio_venta,
         stock: productoForm.value.stock,
         idcategoria: productoForm.value.idcategoria,
+        puntos: productoForm.value.puntos,
+
         
       }).subscribe(
         response =>{
-         this.success_message = 'Se registro el producto correctamente';
          this.producto = new Producto('','','','',1,1,1,'',1);
          this.imgSelect = '../../../../assets/img/default.jpg';
+         Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Producto editado con exito',
+          showConfirmButton: false,
+          timer: 1500
+        }).then((result) => {
+          this._router.navigate(['productos']);
+
+
+        })
         },
         error=>{
           
@@ -71,8 +88,8 @@ export class ProductoCreateComponent implements OnInit {
       )
 
     }else{
+
       this.error_message = 'Complete correctamente el formulario';
-      console.log("error en el formulario");
     }
 
   }

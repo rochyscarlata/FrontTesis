@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GLOBAL } from 'src/app/services/GLOBAL';
 import { ProductoService } from 'src/app/services/producto.service';
+import Swal from 'sweetalert2'
 
 interface HtmlInputEvent extends Event{
   target : HTMLInputElement & EventTarget;
@@ -28,6 +29,8 @@ export class ProductoEditComponent implements OnInit {
   constructor(
     private _route: ActivatedRoute,
     private _productoService: ProductoService, 
+    private _router : Router,
+
   ) {
     this.url = GLOBAL.url;
    }
@@ -93,7 +96,17 @@ export class ProductoEditComponent implements OnInit {
       }).subscribe(
         response=>{
           console.log(response);
-          this.success_message = 'Se actualizó el producto correctamente';
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Producto editado con exito',
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            this._router.navigate(['productos']);
+
+
+          })
         },
         error=>{
 
