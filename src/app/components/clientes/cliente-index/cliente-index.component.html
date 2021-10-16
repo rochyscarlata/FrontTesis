@@ -83,7 +83,7 @@
                                         <th>Opciones</th>
                                     </tr>
                                 </thead>
-                                <tbody *ngFor="let item of clientes ">                                 
+                                <tbody *ngFor="let item of clientes | paginate: { itemsPerPage: 8, currentPage: p }">                                 
                                         <td>
                                             {{item.nombres}}
                                         </td>
@@ -120,8 +120,12 @@
                             </table>
                         </div>
                     </div>
-                    <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
-                </div>
+                    <pagination-controls
+                    (pageChange)="p = $event"
+                    responsive="true"
+                    previousLabel="Anterior"
+                    nextLabel="Siguiente"
+                  ></pagination-controls>                </div>
 
 
 

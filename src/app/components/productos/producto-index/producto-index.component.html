@@ -3,12 +3,11 @@
   <div class="main">
     <nav class="navbar navbar-expand navbar-theme">
       <a class="sidebar-toggle d-flex mr-2 mt-2">
-        <i class="hamburger align-self-center "></i>
-    
+        <i class="hamburger align-self-center"></i>
       </a>
 
       <div class="navbar-collapse collapse">
-        <h1 class="nav-item ml-auto"> Hola {{identity.nombres}} </h1>
+        <h1 class="nav-item ml-auto">Hola {{ identity.nombres }}</h1>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item dropdown ml-lg-2">
             <a
@@ -65,20 +64,6 @@
         </div>
 
         <div class="row">
-          <!-- <div  class="col-12 col-xl-12">
-                        <div class="alert alert-success alert-outline alert-dismissible" role="alert">
-                            <div class="alert-icon">
-                                <i class="far fa-fw fa-bell"></i>
-                            </div>
-                            <div class="alert-message">
-                                <strong>Hello there!</strong> A simple success alert—check it out!
-                            </div>
-    
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                    </div> -->
           <div class="col-12 col-xl-12">
             <div class="card">
               <div class="card-header">
@@ -120,7 +105,6 @@
                         Opciones
                       </button>
                       <div class="dropdown-menu">
-                    
                         <a
                           class="dropdown-item cursorP"
                           data-toggle="modal"
@@ -131,15 +115,17 @@
                           class="dropdown-item cursorP"
                           data-toggle="modal"
                           data-target="#modal-save-categoria"
-                          > Registrar Categoria</a
+                        >
+                          Registrar Categoria</a
                         >
                       </div>
-                           <button
-                      class="btn btn-success mb-1 ml-2"
-                      [routerLink]="['/producto/registrar']"
-                      > Registrar producto</button>
+                      <button
+                        class="btn btn-success mb-1 ml-2"
+                        [routerLink]="['/producto/registrar']"
+                      >
+                        Registrar producto
+                      </button>
                     </div>
-               
                   </div>
                 </div>
               </div>
@@ -152,9 +138,14 @@
                     <th>Opciones</th>
                   </tr>
                 </thead>
-                <tbody *ngFor="let item of productos | paginate: { itemsPerPage: 8, currentPage: p }">
+                <tbody
+                  *ngFor="
+                    let item of productos
+                      | paginate: { itemsPerPage: 6, currentPage: p }
+                  "
+                >
                   <!-- | paginate: { itemsPerPage: 10, currentPage: p } -->
-                  
+
                   <td>
                     <img
                       [src]="url + 'producto/img/' + item.imagen"
@@ -184,9 +175,7 @@
                           [routerLink]="['/producto/editar/', item._id]"
                           >Editar registro</a
                         >
-
-                        <!-- <a class="dropdown-item" (click)="eliminar(item._id)">Eliminar registro</a>
-                                                    <a class="dropdown-item" data-toggle="modal" (click)="get_id(item._id)" [attr.data-target]="'#modal-stock-'+idx">Aumentar Stock</a> -->
+                                               
                       </div>
                     </div>
                     <div class="btn-group">
@@ -199,26 +188,30 @@
                       >
                         <i class="fas fa-trash"> </i>
                       </button>
-
-                      <!-- <a class="dropdown-item" (click)="eliminar(item._id)">Eliminar registro</a>
-                                                    <a class="dropdown-item" data-toggle="modal" (click)="get_id(item._id)" [attr.data-target]="'#modal-stock-'+idx">Aumentar Stock</a> -->
                     </div>
                   </td>
-                 
-
                 </tbody>
               </table>
-             
-              <div class="alert-message alert-light " role="alert" *ngIf="productos.length==0">
-                <h4 class="mt-2"> <strong class="font-weight-bold mt-2">No se encontro el producto</strong></h4>  
+
+              <div
+                class="alert-message alert-light"
+                role="alert"
+                *ngIf="productos.length == 0"
+              >
+                <h4 class="mt-2">
+                  <strong class="font-weight-bold mt-2"
+                    >No se encontro el producto</strong
+                  >
+                </h4>
               </div>
             </div>
           </div>
-           <pagination-controls (pageChange)="p = $event" 
-                    responsive="true"
-                    previousLabel="Anterior"
-                    nextLabel="Siguiente"
-                    ></pagination-controls>  
+          <pagination-controls
+            (pageChange)="p = $event"
+            responsive="true"
+            previousLabel="Anterior"
+            nextLabel="Siguiente"
+          ></pagination-controls>
         </div>
 
         <!--MODAL AGREGAR CATEGORIA-->
@@ -311,7 +304,7 @@
                 </button>
               </div>
               <div class="modal-body m-3">
-                <table class="table ">
+                <table class="table">
                   <thead>
                     <th>Categorias</th>
                   </thead>

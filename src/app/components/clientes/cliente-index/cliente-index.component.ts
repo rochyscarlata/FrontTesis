@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {ClienteService} from 'src/app/services/cliente.service'
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2'
+
+declare var jQuery:any;
+declare var $:any;
+
 @Component({
   selector: 'app-cliente-index',
   templateUrl: './cliente-index.component.html',
@@ -11,6 +15,8 @@ export class ClienteIndexComponent implements OnInit {
 
   public clientes;
   public identity;
+  p: number = 1;
+  collection: any[] = []; 
 
   constructor(
     private _clienteService : ClienteService,

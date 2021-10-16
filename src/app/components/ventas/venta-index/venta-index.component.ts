@@ -3,6 +3,9 @@ import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
 import { VentaService } from 'src/app/services/venta.service';
 
+declare var jQuery:any;
+declare var $:any;
+
 @Component({
   selector: 'app-venta-index',
   templateUrl: './venta-index.component.html',
@@ -12,7 +15,8 @@ export class VentaIndexComponent implements OnInit {
 
   public identity;
   public ventas;
-
+  p: number = 1;
+  collection: any[] = []; 
   constructor(
     private _userService : UserService,
     private _ventaService : VentaService,
