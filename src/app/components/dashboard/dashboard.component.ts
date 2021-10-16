@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'; 
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js'; 
+import {VentaService} from '../../services/venta.service';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels'; 
 import { Label } from 'ng2-charts';
 
@@ -12,6 +13,9 @@ export class DashboardComponent implements OnInit {
 
   public identity;
   public ventas;
+  public total: any[] = []; 
+  public factura: any[] = [];
+  public detalle: any[] = [];
 
   public barChartOptions: ChartOptions = {
     responsive: true,
@@ -24,7 +28,7 @@ export class DashboardComponent implements OnInit {
       }
     }
   };
-  public barChartLabels: Label[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+  public barChartLabels: Label[] = ['2021'];
   public barChartType: ChartType = 'bar';
   public barChartLegend = true;
   public barChartPlugins = [pluginDataLabels];
@@ -34,9 +38,51 @@ export class DashboardComponent implements OnInit {
     { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }
   ];
 
-  constructor() { }
+  constructor(
+    private venta_service : VentaService,
+  ) {   }
 
   ngOnInit(): void {
+     this.venta_service.get_ventas().subscribe(response => {
+       this.barChartData = response;
+     });
+     this.get_Facturas();
+     this.get_detalles();
+  }
+
+  public get_Facturas(){
+
+    setTimeout(() => {
+      this.venta_service.get_ventas().subscribe(response => {
+        for(let i = 0; i < response.ventas.length ; i++){
+          this.factura[i] = response.ventas[i]._id ;
+          
+        }
+        console.log(this.factura); 
+      });
+    }, 2000)
+    
+      
+      console.log('hola toggled')
+      
+    
+    
+   
+   
+  }
+
+  
+  public get_detalles(){
+    for(let i = 0; i < this.factura.length; i++){
+      this.venta_service.data_venta(this.factura[i]._id).subscribe(respuesta => {
+        for(let i = 0; i < respuesta.length ; i++){
+          this.total[i] = respuesta.data.detalles[i].cantidad*respuesta.data.detalles[i].idproducto.precio_venta;
+        }
+        
+        console.log(this.total)
+
+      })
+    }
   }
 
   // events

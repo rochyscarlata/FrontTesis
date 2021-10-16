@@ -13,6 +13,8 @@ export class VentaDetalleComponent implements OnInit {
 
 
   public id;
+  public total = 0;
+
   public venta: any = {
     iduser: '',
     idcliente: ''
@@ -38,6 +40,11 @@ export class VentaDetalleComponent implements OnInit {
             response=>{
               this.venta = response.data.venta;
               this.detalle_venta = response.data.detalles;
+              for(let i = 0; i < response.data.detalles.length; i++ ){
+                this.total += response.data.detalles[i].cantidad*response.data.detalles[i].idproducto.precio_venta;
+              };
+              
+              console.log(response.data)
             },
             error=>{
     

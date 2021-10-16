@@ -15,7 +15,7 @@
                 <li class="sidebar-header">
                     Main
                 </li>
-                <li class="sidebar-item active">
+                <li routerLinkActive="sidebar-item active">
                     <a [routerLink]="['/dashboard']"  class="sidebar-link">
                         <i class="align-middle mr-2 fas fa-fw fa-home"></i> <span class="align-middle">Dashboards</span>
                     </a>
@@ -42,11 +42,7 @@
                         <i class="align-middle mr-2 fas fa-cart-plus"></i> <span class="align-middle">Ventas</span>
                     </a>
                 </li>
-                <li class="sidebar-item" routerLinkActive="sidebar-item active">
-                    <a class="sidebar-link"  >
-                        <i class="align-middle mr-2 fas fa-cash-register"></i> <span class="align-middle">Caja</span>
-                    </a>
-                </li>
+              
                 <li class="sidebar-item" >
                     <a class="sidebar-link" (click)="logout()" >
                         <i class="align-middle mr-2 fas fa-door-closed"></i> <span class="align-middle">Cerrar Sesion</span>

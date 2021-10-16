@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { GLOBAL } from 'src/app/services/GLOBAL';
 import { ProductoService } from 'src/app/services/producto.service';
 import Swal from 'sweetalert2'
+import { UserService } from 'src/app/services/user.service';
 
 interface HtmlInputEvent extends Event{
   target : HTMLInputElement & EventTarget;
@@ -25,14 +26,20 @@ export class ProductoEditComponent implements OnInit {
   public imgSelect : String | ArrayBuffer;
   public success_message;
   public error_message;
+  public identity;
+
 
   constructor(
     private _route: ActivatedRoute,
     private _productoService: ProductoService, 
     private _router : Router,
+    private _userService:UserService,
+
 
   ) {
     this.url = GLOBAL.url;
+    this.identity = this._userService.getIdentity();
+
    }
 
   ngOnInit(): void {

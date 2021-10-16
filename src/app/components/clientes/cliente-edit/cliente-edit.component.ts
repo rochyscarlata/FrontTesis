@@ -4,6 +4,7 @@ import { ClienteService } from 'src/app/services/cliente.service';
 import { Router } from '@angular/router';
 
 import Swal from 'sweetalert2'
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-cliente-edit',
@@ -15,15 +16,18 @@ export class ClienteEditComponent implements OnInit {
   public id;
   public cliente: any = {}
   public success_message;
+  public identity;
 
   constructor(
     private _route: ActivatedRoute,
     private _clienteService: ClienteService,
     private _router: Router,
-
+    private _userService: UserService,
   ) { }
 
   ngOnInit() {
+    this.identity = this._userService.getIdentity();
+
     this._route.params.subscribe(
       params => {
         this.id = params['id'];

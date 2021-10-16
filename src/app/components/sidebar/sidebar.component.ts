@@ -2,6 +2,7 @@ import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-sidebar',
@@ -32,6 +33,16 @@ export class SidebarComponent implements OnInit {
     this.identity = null;
     this.token = null;
 
-    this._router.navigate(['']);
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Cierre de sesion exitosa',
+      showConfirmButton: false,
+      timer: 1500
+    }).then((result) => {
+      this._router.navigate(['']);
+
+
+    })
   }
 }

@@ -63,6 +63,7 @@ export class VentaCreateComponent implements OnInit {
         response =>{
   
           this.productos = response.productos;
+
         },
         error=>{
           
@@ -145,7 +146,15 @@ export class VentaCreateComponent implements OnInit {
 
         this._ventaService.save_data(data).subscribe(
           response =>{
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Venta realizada con exito!',
+              showConfirmButton: false,
+              timer: 1500
+            })
             this._router.navigate(['ventas']);
+
           },
           error=>{
             console.log(error);

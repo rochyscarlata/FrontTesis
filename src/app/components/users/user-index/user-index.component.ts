@@ -19,6 +19,7 @@ export class UserIndexComponent implements OnInit {
   constructor(
     private _userService : UserService,
     private _router : Router,
+    
   ) { 
     this.url = GLOBAL.url;
     this.identity = _userService.getIdentity();

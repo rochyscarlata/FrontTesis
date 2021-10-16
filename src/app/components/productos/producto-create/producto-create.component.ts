@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import { UserService } from 'src/app/services/user.service';
 import { ProductoService } from 'src/app/services/producto.service';
 import { Producto } from "../../../models/Producto";
 import Swal from 'sweetalert2'
@@ -25,13 +25,19 @@ export class ProductoCreateComponent implements OnInit {
   public categorias;
   public success_message;
   public error_message;
+  public identity;
+
 
   constructor(
     private _productoService : ProductoService,
     private _router : Router,
+    private _userService:UserService,
+
 
   ) { 
     this.producto = new Producto('','','','',1,1,1,'',1)
+    this.identity = this._userService.getIdentity();
+
   }
 
   ngOnInit(): void {

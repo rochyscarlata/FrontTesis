@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ClienteService} from 'src/app/services/cliente.service'
+import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2'
 @Component({
   selector: 'app-cliente-index',
@@ -9,12 +10,15 @@ import Swal from 'sweetalert2'
 export class ClienteIndexComponent implements OnInit {
 
   public clientes;
+  public identity;
 
   constructor(
-    private _clienteService : ClienteService
+    private _clienteService : ClienteService,
+    private _userService : UserService
   ) { }
 
   ngOnInit() {
+    this.identity = this._userService.getIdentity();
     this._clienteService.get_clientes().subscribe(
       response=>{
         this.clientes = response.clientes;

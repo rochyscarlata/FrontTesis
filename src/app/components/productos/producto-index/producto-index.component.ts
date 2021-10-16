@@ -2,10 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { ProductoService } from 'src/app/services/producto.service';
 import { GLOBAL } from 'src/app/services/GLOBAL';
 import {FormsModule, NgForm} from '@angular/forms'
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
+
+
 import Swal from 'sweetalert2';
 
 declare var jQuery:any;
 declare var $:any;
+
 
 @Component({
   selector: 'app-producto-index',
@@ -20,15 +25,28 @@ export class ProductoIndexComponent implements OnInit {
   public categorias;
   public titulo_cat;
   public descripcion_cat;
-
-
+  public identity;
+  p: number = 1;
+  collection: any[] = []; 
   constructor(
+    private _userService:UserService,
     private _productoService: ProductoService,
+    private _router:Router,
+
   ) {
     this.url = GLOBAL.url
+    this.identity = this._userService.getIdentity();
+
    }
 
   ngOnInit(): void {
+   
+   
+   
+   
+   
+   
+   
     this._productoService.get_productos('').subscribe(
       response =>{
         this.productos = response.productos;
@@ -57,9 +75,11 @@ export class ProductoIndexComponent implements OnInit {
     this._productoService.get_productos(searchForm.value.filtro).subscribe(
       response =>{
         this.productos = response.productos;
+        console.log(this.productos)
+
       },
       error=>{
-
+        alert("no existe ")
       }
     );
     
